@@ -20,15 +20,15 @@ var app = {
                 $('body').html(new EmployeeView(employee).render().el);
             });
         }
-    }
+    },
 
     registerEvents: function() {
         var self = this;
         // Check if the browser supports touch events
-        if (document.documentElement.hasOwnproperty('ontouchstart')) {
+        if (document.documentElement.hasOwnProperty('ontouchstart')) {
             // yes, so register the touch event listener
             $('body').on('touchstart', 'a', function(event) {
-                $(event.target),addClass('tappable-active');
+                $(event.target).addClass('tappable-active');
             });
             $('body').on('touchend', 'a', function(event) {
                 $(event.target).removeClass('tappable-active');
@@ -36,7 +36,7 @@ var app = {
         } else {
             // no, so register the mouse events instead
             $('body').on('mousedown', 'a', function(event) {
-                $(event.target),addClass('tappable-active');
+                $(event.target).addClass('tappable-active');
             });
             $('body').on('mouseup', 'a', function(event) {
                 $(event.target).removeClass('tappable-active');
@@ -49,7 +49,7 @@ var app = {
         var self = this;
         var detailsURL = /^#employees\/(\d{1,})/;
         this.registerEvents();
-        this.store = new MemoryStore( function() {
+        this.store = new LocalStorageStore( function() {
             // self.showAlert('Store initialised', 'Info');
             // $('body').html(new HomeView(self.store).render().el);
             self.route();
